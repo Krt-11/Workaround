@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>For Tani ♡</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Poppins:wght@300;400&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --blush: #f6c1cc;
+        --cream: #fff7f9;
+        --rose: #e89aa8;
+        --text: #4a2c2a;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background: linear-gradient(180deg, var(--cream), #fdebef);
+        font-family: "Poppins", sans-serif;
+        color: var(--text);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+      }
+
+      .card {
+        max-width: 820px;
+        background: rgba(255, 255, 255, 0.75);
+        backdrop-filter: blur(10px);
+        border-radius: 28px;
+        padding: 3rem 3.5rem;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+        position: relative;
+      }
+
+      .bow {
+        position: absolute;
+        top: -18px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 2.2rem;
+      }
+
+      h1 {
+        font-family: "Playfair Display", serif;
+        font-weight: 600;
+        text-align: center;
+        margin-bottom: 0.25rem;
+        color: #6b3a3a;
+      }
+
+      .subtitle {
+        text-align: center;
+        font-size: 0.9rem;
+        letter-spacing: 0.1em;
+        color: var(--rose);
+        margin-bottom: 2.5rem;
+      }
+
+      .message {
+        font-family: "Playfair Display", serif;
+        font-size: 1.1rem;
+        line-height: 1.9;
+        white-space: pre-line;
+      }
+
+      .signature {
+        margin-top: 2.5rem;
+        font-family: "Playfair Display", serif;
+        font-style: italic;
+        text-align: right;
+      }
+
+      .hearts {
+        text-align: center;
+        margin-top: 2rem;
+        color: var(--rose);
+        font-size: 1.2rem;
+      }
+
+      /* Floating hearts animation */
+      .heart {
+        position: fixed;
+        bottom: -20px;
+        font-size: 1.2rem;
+        animation: floatUp 8s linear infinite;
+        opacity: 0.7;
+      }
+
+      @keyframes floatUp {
+        from {
+          transform: translateY(0) scale(1);
+          opacity: 0.8;
+        }
+        to {
+          transform: translateY(-110vh) scale(1.4);
+          opacity: 0;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .card {
+          padding: 2rem;
+        }
+        .message {
+          font-size: 1rem;
+        }
+      }
+
+      .music-btn {
+        position: fixed;
+        bottom: 24px;
+        right: 24px;
+        background: rgba(255, 255, 255, 0.85);
+        border: none;
+        border-radius: 999px;
+        padding: 12px 18px;
+        font-family: "Poppins", sans-serif;
+        font-size: 0.85rem;
+        cursor: pointer;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        z-index: 10;
+      }
+
+      .music-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.16);
+      }
+
+      .overlay {
+        position: fixed;
+        inset: 0;
+        background: linear-gradient(180deg, #fdebef, #f6c1cc);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.6s ease;
+        z-index: 9;
+      }
+
+      .overlay.active {
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      .overlay-text {
+        font-family: "Playfair Display", serif;
+        font-size: 2rem;
+        color: #6b3a3a;
+        text-align: center;
+        padding: 2rem;
+      }
+    </style>
+  </head>
+  <body>
+    <audio id="bg-music" loop>
+      <source src="music.mp3" type="audio/mpeg" />
+    </audio>
+
+    <div class="overlay" id="songOverlay">
+      <div class="overlay-text">this song is for you ♡</div>
+    </div>
+
+    <button class="music-btn" id="musicBtn">🎀 play music</button>
+
+    <div class="card">
+      <div class="bow">🎀</div>
+      <h1>Happy 3 Years, Tani</h1>
+      <div class="subtitle">for my meri jaan</div>
+
+      <div class="message">
+        Happy 3 years, my love — my shona, meri jaan, my loml. Sometimes I sit
+        and wonder how I got so lucky to love someone as rare as you. You are
+        the finest, kindest, most tender-hearted soul I have ever known, and
+        even that feels like an understatement. The way you love — openly,
+        compassionately, without fear — has changed me in the most beautiful
+        ways. You carry so much warmth in your heart as you learn to heal
+        others, and it amazes me how naturally love lives inside you. Every
+        morning I get to look at your rendition of when our relationship
+        started, and every night that’s the last thing I see. You captured us —
+        kissing in a quiet parking lot, snow falling softly — and somehow turned
+        a moment into something eternal. You are the first one to come across my
+        mind when I wake up and before I sleep. You rule my dreams, my heart,
+        and my life. I love your softness, your empathy, your strength, and the
+        way you make even the hardest days feel gentler just by being you. Even
+        when we were sick, sipping hot water and painting together, being with
+        you felt like home. Three years with you feels both like a lifetime and
+        not nearly enough. I choose you, again and again, in every future I can
+        imagine.
+      </div>
+
+      <div class="signature">Always yours ♡</div>
+      <div class="hearts">♡ ♡ ♡</div>
+    </div>
+
+    <script>
+      const hearts = ["♡", "♥"];
+
+      setInterval(() => {
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = 6 + Math.random() * 4 + "s";
+        document.body.appendChild(heart);
+
+        setTimeout(() => heart.remove(), 9000);
+      }, 700);
+      const music = document.getElementById("bg-music");
+      const btn = document.getElementById("musicBtn");
+      const overlay = document.getElementById("songOverlay");
+
+      let playing = false;
+
+      btn.addEventListener("click", () => {
+        if (!playing) {
+          music.volume = 0;
+          music.play();
+          overlay.classList.add("active");
+          btn.textContent = "🎀 pause music";
+
+          // fade in
+          let vol = 0;
+          const fade = setInterval(() => {
+            vol += 0.02;
+            music.volume = Math.min(vol, 1);
+            if (vol >= 1) clearInterval(fade);
+          }, 60);
+
+          // hide overlay after a moment
+          setTimeout(() => overlay.classList.remove("active"), 2500);
+        } else {
+          music.pause();
+          btn.textContent = "🎀 play music";
+        }
+        playing = !playing;
+      });
+
+      hearts = ["♡", "♥"];
+
+      setInterval(() => {
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = 6 + Math.random() * 4 + "s";
+        document.body.appendChild(heart);
+
+        setTimeout(() => heart.remove(), 9000);
+      }, 700);
+    </script>
+  </body>
+</html>
