@@ -4,10 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>For Tani ♡</title>
+
     <link
       href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Poppins:wght@300;400&display=swap"
       rel="stylesheet"
     />
+
     <style>
       :root {
         --blush: #f6c1cc;
@@ -30,6 +32,10 @@
         align-items: center;
         justify-content: center;
         padding: 2rem;
+      }
+
+      body.locked {
+        overflow: hidden;
       }
 
       .card {
@@ -87,7 +93,7 @@
         font-size: 1.2rem;
       }
 
-      /* Floating hearts animation */
+      /* Floating hearts */
       .heart {
         position: fixed;
         bottom: -20px;
@@ -116,6 +122,7 @@
         }
       }
 
+      /* Music button */
       .music-btn {
         position: fixed;
         bottom: 24px;
@@ -137,6 +144,11 @@
         box-shadow: 0 12px 28px rgba(0, 0, 0, 0.16);
       }
 
+      button:active {
+        transform: scale(0.97);
+      }
+
+      /* Song overlay */
       .overlay {
         position: fixed;
         inset: 0;
@@ -164,7 +176,65 @@
       }
     </style>
   </head>
-  <body>
+
+  <body class="locked">
+    <!-- Password Overlay -->
+    <div
+      id="passwordOverlay"
+      style="
+        position: fixed;
+        inset: 0;
+        background: #fdebef;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 2rem;
+        text-align: center;
+        z-index: 1000;
+      "
+    >
+      <h2 style="font-family: 'Playfair Display', serif; color: #6b3a3a">
+        Enter the secret password 💌
+      </h2>
+
+      <input
+        id="passwordInput"
+        type="password"
+        placeholder="Enter password"
+        inputmode="text"
+        autocomplete="off"
+        autocorrect="off"
+        autocapitalize="none"
+        spellcheck="false"
+        style="
+          padding: 12px 16px;
+          font-size: 1rem;
+          border-radius: 12px;
+          border: 1px solid #ccc;
+          margin: 1rem 0;
+        "
+      />
+
+      <button
+        id="passwordBtn"
+        style="
+          padding: 12px 24px;
+          border-radius: 12px;
+          border: none;
+          background: #f6c1cc;
+          font-size: 1rem;
+          cursor: pointer;
+          font-family: 'Poppins', sans-serif;
+        "
+      >
+        Submit
+      </button>
+
+      <p id="passwordError" style="color: red; margin-top: 1rem"></p>
+    </div>
+
+    <!-- Music -->
     <audio id="bg-music" loop>
       <source src="music.mp3" type="audio/mpeg" />
     </audio>
@@ -175,10 +245,11 @@
 
     <button class="music-btn" id="musicBtn">🎀 play music</button>
 
+    <!-- Card -->
     <div class="card">
       <div class="bow">🎀</div>
       <h1>Happy 3 Years, Tani</h1>
-      <div class="subtitle">for my meri jaan</div>
+      <div class="subtitle">for meri jaan</div>
 
       <div class="message">
         Happy 3 years, my love — my shona, meri jaan, my loml. Sometimes I sit
@@ -205,33 +276,36 @@
       <div class="hearts">♡ ♡ ♡</div>
     </div>
 
+    <!-- Floating hearts -->
     <script>
       const hearts = ["♡", "♥"];
 
       setInterval(() => {
-        const heart = document.createElement("div");
-        heart.className = "heart";
-        heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
-        heart.style.left = Math.random() * 100 + "vw";
-        heart.style.animationDuration = 6 + Math.random() * 4 + "s";
-        document.body.appendChild(heart);
-
-        setTimeout(() => heart.remove(), 9000);
+        const h = document.createElement("div");
+        h.className = "heart";
+        h.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+        h.style.left = Math.random() * 100 + "vw";
+        h.style.animationDuration = 6 + Math.random() * 4 + "s";
+        document.body.appendChild(h);
+        setTimeout(() => h.remove(), 9000);
       }, 700);
+    </script>
+
+    <!-- Music logic -->
+    <script>
       const music = document.getElementById("bg-music");
-      const btn = document.getElementById("musicBtn");
-      const overlay = document.getElementById("songOverlay");
+      const musicBtn = document.getElementById("musicBtn");
+      const songOverlay = document.getElementById("songOverlay");
 
       let playing = false;
 
-      btn.addEventListener("click", () => {
+      musicBtn.addEventListener("click", () => {
         if (!playing) {
           music.volume = 0;
           music.play();
-          overlay.classList.add("active");
-          btn.textContent = "🎀 pause music";
+          songOverlay.classList.add("active");
+          musicBtn.textContent = "🎀 pause music";
 
-          // fade in
           let vol = 0;
           const fade = setInterval(() => {
             vol += 0.02;
@@ -239,27 +313,47 @@
             if (vol >= 1) clearInterval(fade);
           }, 60);
 
-          // hide overlay after a moment
-          setTimeout(() => overlay.classList.remove("active"), 2500);
+          setTimeout(() => songOverlay.classList.remove("active"), 2500);
         } else {
           music.pause();
-          btn.textContent = "🎀 play music";
+          musicBtn.textContent = "🎀 play music";
         }
         playing = !playing;
       });
+    </script>
 
-      hearts = ["♡", "♥"];
+    <!-- Password + heartbeat haptics -->
+    <script>
+      const passwordOverlay = document.getElementById("passwordOverlay");
+      const passwordInput = document.getElementById("passwordInput");
+      const passwordBtn = document.getElementById("passwordBtn");
+      const passwordError = document.getElementById("passwordError");
 
-      setInterval(() => {
-        const heart = document.createElement("div");
-        heart.className = "heart";
-        heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
-        heart.style.left = Math.random() * 100 + "vw";
-        heart.style.animationDuration = 6 + Math.random() * 4 + "s";
-        document.body.appendChild(heart);
+      passwordInput.focus();
 
-        setTimeout(() => heart.remove(), 9000);
-      }, 700);
+      const heartbeat = [100, 120, 100, 400, 100, 120, 100];
+
+      function vibrate(pattern) {
+        if (navigator.vibrate) navigator.vibrate(pattern);
+      }
+
+      passwordBtn.addEventListener("click", () => {
+        const entered = passwordInput.value.toLowerCase().trim();
+
+        if (entered === "roomba") {
+          vibrate(heartbeat);
+          document.body.classList.remove("locked");
+          passwordOverlay.style.display = "none";
+        } else {
+          vibrate(heartbeat);
+          passwordError.textContent = "Incorrect password, try again!";
+          passwordInput.value = "";
+        }
+      });
+
+      passwordInput.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") passwordBtn.click();
+      });
     </script>
   </body>
 </html>
